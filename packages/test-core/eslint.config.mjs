@@ -1,5 +1,5 @@
 import baseConfig from '../../eslint.config.mjs';
-import coreConfig from '../eslint/config-core/src/lib/config-core.mjs';
+import coreConfig from '../eslint-config-core/src/lib/config-core.mjs';
 
 export default [
   ...baseConfig,

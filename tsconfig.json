@@ -4,19 +4,19 @@
   "files": [],
   "references": [
     {
-      "path": "./libs/eslint/config-core"
+      "path": "./packages/test-core"
     },
     {
-      "path": "./libs/eslint/config-angular"
+      "path": "./packages/esling-config-angular"
     },
     {
-      "path": "./libs/prettier/config"
+      "path": "./packages/eslint-config-core"
     },
     {
-      "path": "./libs/stylelint/config"
+      "path": "./packages/stylelint-config"
     },
     {
-      "path": "./libs/test-core"
+      "path": "./packages/prettier-config"
     }
   ]
 }
