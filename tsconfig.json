@@ -2,5 +2,21 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./libs/eslint/config-core"
+    },
+    {
+      "path": "./libs/eslint/config-angular"
+    },
+    {
+      "path": "./libs/prettier/config"
+    },
+    {
+      "path": "./libs/stylelint/config"
+    },
+    {
+      "path": "./libs/test-core"
+    }
+  ]
 }
