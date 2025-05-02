@@ -2,21 +2,35 @@
   "name": "@pavl-ro/eslint-config-angular",
   "version": "0.3.0",
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "author": "Pavel Romanov",
+  "description": "Angular ESLint configuration",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     }
   },
   "files": [
     "dist",
     "!**/*.tsbuildinfo"
+  ],
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "config",
+    "typescript",
+    "angular"
   ],
   "dependencies": {
     "@pavl-ro/eslint-config-core": "*"
