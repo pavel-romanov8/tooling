@@ -69,7 +69,10 @@
     },
     "changelog": {
       "projectChagelogs": true,
-      "workspaceChangelog": true
+      "workspaceChangelog": {
+        "file": false,
+        "createRelease": "github"
+      }
     }
   },
   "targetDefaults": {
