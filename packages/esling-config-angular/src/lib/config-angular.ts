@@ -1,3 +1,3 @@
-export function configAngular(): string {
-  return 'config-angular';
-}
+const config = {};
+
+export default config;
