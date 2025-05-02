@@ -1,1 +1,1 @@
-export * from './lib/config-angular.js';
+export default './lib/config-angular.mjs';

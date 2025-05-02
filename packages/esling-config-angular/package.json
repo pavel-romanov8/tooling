@@ -18,5 +18,7 @@
     "dist",
     "!**/*.tsbuildinfo"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@pavl-ro/eslint-config-core": "*"
+  }
 }
