@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node", "vite/client"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.js"],
   "references": [
     {
       "path": "../eslint-config-core/tsconfig.lib.json"

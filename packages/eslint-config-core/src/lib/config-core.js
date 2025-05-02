@@ -144,8 +144,8 @@ export default tseslint.config(
         ...(config.languageOptions?.parserOptions || {}),
         projectService: true,
         tsconfigRootDir: process.cwd(),
-      }
-    }
+      },
+    },
   })),
 
   {

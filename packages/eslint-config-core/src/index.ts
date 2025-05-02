@@ -1,1 +1,3 @@
-export default './lib/config-core.mjs';
+import config from './lib/config-core.js';
+
+export default config;
