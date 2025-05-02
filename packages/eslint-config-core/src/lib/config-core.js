@@ -1,5 +1,4 @@
 import jsdoc from 'eslint-plugin-jsdoc';
-import importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
 import js from '@eslint/js';
 import globals from 'globals';
@@ -122,16 +121,6 @@ const customJsDocRules = {
   ],
 };
 
-const customImportRules = {
-  'import/order': [
-    'error',
-    {
-      'newlines-between': 'always-and-inside-groups',
-    },
-  ],
-  'import/no-duplicates': 'error',
-};
-
 export default tseslint.config(
   ignores,
   jsRecommended,
@@ -163,12 +152,10 @@ export default tseslint.config(
     },
     plugins: {
       jsdoc,
-      import: importPlugin,
     },
     rules: {
       ...customTsRules,
       ...customJsDocRules,
-      ...customImportRules,
     },
   },
   {
@@ -180,12 +167,6 @@ export default tseslint.config(
         ...globals.node,
         ...globals.es2021,
       },
-    },
-    plugins: {
-      import: importPlugin,
-    },
-    rules: {
-      ...customImportRules,
     },
   },
   {
