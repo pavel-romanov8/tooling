@@ -30,5 +30,8 @@
     "config",
     "typescript"
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependencies": {
+    "prettier": "^3.5.0"
+  }
 }
