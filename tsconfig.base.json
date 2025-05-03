@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "composite": true,
-    "allowJs": true,
     "declarationMap": true,
+    "allowJs": true,
     "emitDeclarationOnly": true,
     "importHelpers": true,
     "isolatedModules": true,
