@@ -15,17 +15,17 @@ const ignores = {
 
 const jsRecommended = js.configs.recommended;
 const tsRecommended = tseslint.configs.strictTypeChecked.map((config) => ({
-        ...config,
-        files: ['**/*.{ts,mts,cts,tsx}'],
-        languageOptions: {
-          ...(config.languageOptions || {}),
-          parserOptions: {
-            ...(config.languageOptions?.parserOptions || {}),
-            projectService: true,
-            tsconfigRootDir: process.cwd(),
-          },
-        },
-      })),
+  ...config,
+  files: ['**/*.{ts,mts,cts,tsx}'],
+  languageOptions: {
+    ...(config.languageOptions || {}),
+    parserOptions: {
+      ...(config.languageOptions?.parserOptions || {}),
+      projectService: true,
+      tsconfigRootDir: process.cwd(),
+    },
+  },
+}));
 const jsDocRecommended = jsdoc.configs['flat/recommended-typescript-error'];
 
 const customTsRules = {
@@ -137,10 +137,7 @@ export default tseslint.config(
   ignores,
   {
     files: ['**/*.{ts,mts,cts,tsx}'],
-    extends: [
-      jsDocRecommended,
-      jsRecommended,
-    ],
+    extends: [jsDocRecommended, jsRecommended],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -193,11 +190,7 @@ export default tseslint.config(
   },
   {
     files: ['**/*.spec.ts'],
-    extends: [
-      jsRecommended,
-      tsRecommended,
-      jsDocRecommended,
-    ],
+    extends: [jsRecommended, tsRecommended, jsDocRecommended],
     rules: {
       'max-lines-per-function': 'off',
       '@typescript-eslint/naming-convention': 'off',
