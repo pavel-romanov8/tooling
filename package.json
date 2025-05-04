@@ -16,6 +16,7 @@
     "node": "22.15.0"
   },
   "devDependencies": {
+    "@nx/angular": "^20.8.1",
     "@nx/eslint": "20.8.1",
     "@nx/eslint-plugin": "20.8.1",
     "@nx/jest": "20.8.1",

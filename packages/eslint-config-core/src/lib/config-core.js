@@ -181,4 +181,13 @@ export default tseslint.config(
       '@typescript-eslint/no-require-imports': 'off', // Allow require if using .cjs
     },
   },
+  {
+    files: ['**/*.spec.ts'],
+    rules: {
+      'max-lines-per-function': 'off',
+      '@typescript-eslint/naming-convention': 'off',
+      'jsdoc/require-jsdoc': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+    },
+  },
 );

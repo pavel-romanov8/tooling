@@ -17,9 +17,6 @@
     },
     {
       "path": "./packages/prettier-config"
-    },
-    {
-      "path": "./packages/test-angular"
     }
   ]
 }
