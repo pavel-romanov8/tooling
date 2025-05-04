@@ -1,10 +1,8 @@
 // @ts-check
-import coreConfig from '@pavl-ro/eslint-config-core';
 import tseslint from 'typescript-eslint';
 import angularEslint from 'angular-eslint';
 
 export default tseslint.config(
-  ...coreConfig,
   {
     files: ['**/*.ts'],
     extends: [...angularEslint.configs.tsRecommended],
