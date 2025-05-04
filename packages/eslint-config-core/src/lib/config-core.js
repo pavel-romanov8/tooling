@@ -1,4 +1,3 @@
-// @ts-check
 import jsdoc from 'eslint-plugin-jsdoc';
 import tseslint from 'typescript-eslint';
 import js from '@eslint/js';
@@ -16,6 +15,7 @@ const ignores = {
 
 const jsRecommended = js.configs.recommended;
 const tsRecommended = tseslint.configs.strictTypeChecked;
+const jsDocRecommended = jsdoc.configs['flat/recommended-typescript-error'];
 
 const customTsRules = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
@@ -125,6 +125,7 @@ const customJsDocRules = {
 export default tseslint.config(
   ignores,
   jsRecommended,
+  jsDocRecommended,
   ...tsRecommended.map((config) => ({
     ...config,
     files: ['**/*.{ts,mts,cts,tsx}'],
@@ -148,7 +149,7 @@ export default tseslint.config(
         tsconfigRootDir: process.cwd(),
       },
       globals: {
-        ...globals.es2021,
+        ...globals.es2023,
       },
     },
     plugins: {
