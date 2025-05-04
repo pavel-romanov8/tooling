@@ -8,12 +8,6 @@ export default tseslint.config(
   {
     files: ['**/*.ts'],
     extends: [...angularEslint.configs.tsRecommended],
-    rules: {
-      '@angular-eslint/no-host-metadata-property': [
-        'error',
-        { allowStatic: true },
-      ],
-    },
   },
 
   {
