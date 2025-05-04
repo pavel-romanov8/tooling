@@ -1,3 +1,4 @@
+// @ts-check
 import jsdoc from 'eslint-plugin-jsdoc';
 import tseslint from 'typescript-eslint';
 import js from '@eslint/js';

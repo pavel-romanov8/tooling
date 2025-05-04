@@ -1,3 +1,4 @@
+// @ts-check
 import coreConfig from '@pavl-ro/eslint-config-core';
 import tseslint from 'typescript-eslint';
 import angularEslint from 'angular-eslint';
@@ -6,11 +7,8 @@ export default tseslint.config(
   ...coreConfig,
   {
     files: ['**/*.ts'],
-    plugins: {
-      '@angular-eslint': angularEslint,
-    },
+    extends: [...angularEslint.configs.tsRecommended],
     rules: {
-      ...angularEslint.configs.tsAll,
       '@angular-eslint/no-host-metadata-property': [
         'error',
         { allowStatic: true },
@@ -20,14 +18,12 @@ export default tseslint.config(
 
   {
     files: ['**/*.component.ts', '**/*.component.html'],
-    languageOptions: {
-      parser: angularEslint.templateParser,
-    },
-    plugins: {
-      '@angular-eslint': angularEslint,
-    },
+    processor: angularEslint.processInlineTemplates,
+    extends: [
+      ...angularEslint.configs.templateRecommended,
+      ...angularEslint.configs.templateAccessibility,
+    ],
     rules: {
-      ...angularEslint.configs.templateAll,
       '@angular-eslint/template/alt-text': 'error',
       '@angular-eslint/template/conditional-complexity': [
         'error',
@@ -43,5 +39,4 @@ export default tseslint.config(
       '@angular-eslint/template/use-track-by-function': 'error',
     },
   },
-  angularEslint.processInlineTemplates,
 );
