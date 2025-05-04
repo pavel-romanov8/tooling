@@ -1,28 +1,30 @@
 // @ts-check
 import tseslint from 'typescript-eslint';
 import angularEslint from 'angular-eslint';
+import globals from 'globals';
 
 export default tseslint.config(
+  ...angularEslint.configs.tsRecommended.map((config) => ({
+    files: ['**/*.ts'],
+    ...config,
+  })),
   {
     files: ['**/*.ts'],
+    processor: angularEslint.processInlineTemplates,
     languageOptions: {
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: process.cwd(),
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2023,
       },
     },
-    extends: [...angularEslint.configs.tsRecommended],
+    plugins: {
+      '@angular-eslint': angularEslint.tsPlugin,
+    },
   },
 
   {
-    files: ['**/*.component.ts', '**/*.component.html'],
-    processor: angularEslint.processInlineTemplates,
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: process.cwd(),
-      },
-    },
+    files: ['**/*.component.html'],
     extends: [
       ...angularEslint.configs.templateRecommended,
       ...angularEslint.configs.templateAccessibility,
