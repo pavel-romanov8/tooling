@@ -1,25 +1,27 @@
-// @ts-check
-import tseslint from 'typescript-eslint';
 import angularEslint from 'angular-eslint';
+import tseslint from 'typescript-eslint';
 import globals from 'globals';
 
+const GLOBALS_BROWSER_FIX = Object.assign({}, globals.browser, {
+  AudioWorkletGlobalScope:
+    globals.browser['AudioWorkletGlobalScope '] || 'readonly',
+});
+
+delete GLOBALS_BROWSER_FIX['AudioWorkletGlobalScope '];
+
 export default tseslint.config(
-  ...angularEslint.configs.tsRecommended.map((config) => ({
-    files: ['**/*.ts'],
-    ...config,
-  })),
   {
     files: ['**/*.ts'],
     processor: angularEslint.processInlineTemplates,
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-        ...globals.es2023,
-      },
-    },
     plugins: {
       '@angular-eslint': angularEslint.tsPlugin,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.es2024,
+        ...GLOBALS_BROWSER_FIX,
+      },
     },
   },
 

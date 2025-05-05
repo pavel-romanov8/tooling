@@ -13,20 +13,12 @@ const ignores = {
   ],
 };
 
-const jsRecommended = js.configs.recommended;
-const tsRecommended = tseslint.configs.strictTypeChecked.map((config) => ({
-  ...config,
-  files: ['**/*.{ts,mts,cts,tsx}'],
-  languageOptions: {
-    ...(config.languageOptions || {}),
-    parserOptions: {
-      ...(config.languageOptions?.parserOptions || {}),
-      projectService: true,
-      tsconfigRootDir: process.cwd(),
-    },
-  },
-}));
-const jsDocRecommended = jsdoc.configs['flat/recommended-typescript-error'];
+const GLOBALS_BROWSER_FIX = Object.assign({}, globals.browser, {
+  AudioWorkletGlobalScope:
+    globals.browser['AudioWorkletGlobalScope '] || 'readonly',
+});
+
+delete GLOBALS_BROWSER_FIX['AudioWorkletGlobalScope '];
 
 const customTsRules = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
@@ -111,6 +103,7 @@ const customJsDocRules = {
   'jsdoc/check-alignment': 'error',
   'jsdoc/tag-lines': 'error',
   'jsdoc/no-bad-blocks': 'error',
+  'jsdoc/require-returns': 'off',
   'jsdoc/require-jsdoc': [
     'error',
     {
@@ -135,18 +128,20 @@ const customJsDocRules = {
 
 export default tseslint.config(
   ignores,
+  jsdoc.configs['flat/recommended-typescript-error'],
+  js.configs.recommended,
   {
     files: ['**/*.{ts,mts,cts,tsx}'],
-    extends: [jsDocRecommended, jsRecommended],
+    extends: [tseslint.configs.strictTypeChecked],
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
       parserOptions: {
         projectService: true,
         tsconfigRootDir: process.cwd(),
       },
       globals: {
-        ...globals.es2023,
+        ...globals.node,
+        ...globals.es2024,
+        ...GLOBALS_BROWSER_FIX,
       },
     },
     plugins: {
@@ -159,7 +154,6 @@ export default tseslint.config(
   },
   {
     files: ['**/*.{js,mjs,cjs,jsx}'],
-    extends: [jsDocRecommended, jsRecommended],
     plugins: {
       jsdoc,
     },
@@ -168,7 +162,7 @@ export default tseslint.config(
       sourceType: 'module',
       globals: {
         ...globals.node,
-        ...globals.es2021,
+        ...globals.es2024,
       },
     },
     rules: {
@@ -177,12 +171,14 @@ export default tseslint.config(
   },
   {
     files: ['eslint.config.{js,mjs,cjs}'],
-    extends: [jsRecommended],
     languageOptions: {
       sourceType: 'module',
       globals: {
         ...globals.node,
       },
+    },
+    plugins: {
+      jsdoc,
     },
     rules: {
       '@typescript-eslint/no-require-imports': 'off', // Allow require if using .cjs
@@ -190,7 +186,6 @@ export default tseslint.config(
   },
   {
     files: ['**/*.spec.ts'],
-    extends: [jsRecommended, tsRecommended, jsDocRecommended],
     rules: {
       'max-lines-per-function': 'off',
       '@typescript-eslint/naming-convention': 'off',
