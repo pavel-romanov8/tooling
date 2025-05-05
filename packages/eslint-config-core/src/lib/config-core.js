@@ -13,6 +13,11 @@ const ignores = {
   ],
 };
 
+// The older version of the globals library had this bug
+// It was fixed in the later version, however some libraries
+// that we're using might still relying on the old implementation.
+// Therefore, it is safer to use this approach where we manually fix it
+// Related GitHub issie: https://github.com/sindresorhus/globals/issues/239
 const GLOBALS_BROWSER_FIX = Object.assign({}, globals.browser, {
   AudioWorkletGlobalScope:
     globals.browser['AudioWorkletGlobalScope '] || 'readonly',
@@ -164,7 +169,7 @@ export default tseslint.config(
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
-        ...globals.browser,
+        ...GLOBALS_BROWSER_FIX,
         ...globals.node,
         ...globals.es2024,
       },
