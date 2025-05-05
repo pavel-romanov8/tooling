@@ -1,13 +1,5 @@
 import angularEslint from 'angular-eslint';
 import tseslint from 'typescript-eslint';
-import globals from 'globals';
-
-const GLOBALS_BROWSER_FIX = Object.assign({}, globals.browser, {
-  AudioWorkletGlobalScope:
-    globals.browser['AudioWorkletGlobalScope '] || 'readonly',
-});
-
-delete GLOBALS_BROWSER_FIX['AudioWorkletGlobalScope '];
 
 export default tseslint.config(
   {
@@ -15,13 +7,6 @@ export default tseslint.config(
     processor: angularEslint.processInlineTemplates,
     plugins: {
       '@angular-eslint': angularEslint.tsPlugin,
-    },
-    languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.es2024,
-        ...GLOBALS_BROWSER_FIX,
-      },
     },
   },
 
@@ -45,6 +30,7 @@ export default tseslint.config(
       '@angular-eslint/template/no-interpolation-in-attributes': 'error',
       '@angular-eslint/template/no-positive-tabindex': 'error',
       '@angular-eslint/template/use-track-by-function': 'error',
+      '@angular-eslint/template/button-has-type': 'error',
     },
   },
 );

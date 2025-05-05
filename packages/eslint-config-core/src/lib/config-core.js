@@ -126,22 +126,23 @@ const customJsDocRules = {
   ],
 };
 
+const jsDocRecommended = jsdoc.configs['flat/recommended-typescript-error'];
+
 export default tseslint.config(
   ignores,
-  jsdoc.configs['flat/recommended-typescript-error'],
   js.configs.recommended,
   {
     files: ['**/*.{ts,mts,cts,tsx}'],
-    extends: [tseslint.configs.strictTypeChecked],
+    extends: [tseslint.configs.strictTypeChecked, jsDocRecommended],
     languageOptions: {
       parserOptions: {
         projectService: true,
         tsconfigRootDir: process.cwd(),
       },
       globals: {
+        ...GLOBALS_BROWSER_FIX,
         ...globals.node,
         ...globals.es2024,
-        ...GLOBALS_BROWSER_FIX,
       },
     },
     plugins: {
@@ -150,10 +151,12 @@ export default tseslint.config(
     rules: {
       ...customTsRules,
       ...customJsDocRules,
+      '@typescript-eslint/no-extraneous-class': 'off',
     },
   },
   {
     files: ['**/*.{js,mjs,cjs,jsx}'],
+    extends: [jsDocRecommended],
     plugins: {
       jsdoc,
     },
@@ -161,6 +164,7 @@ export default tseslint.config(
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
+        ...globals.browser,
         ...globals.node,
         ...globals.es2024,
       },
@@ -171,6 +175,7 @@ export default tseslint.config(
   },
   {
     files: ['eslint.config.{js,mjs,cjs}'],
+    extends: [jsDocRecommended],
     languageOptions: {
       sourceType: 'module',
       globals: {
@@ -186,6 +191,7 @@ export default tseslint.config(
   },
   {
     files: ['**/*.spec.ts'],
+    extends: [jsDocRecommended],
     rules: {
       'max-lines-per-function': 'off',
       '@typescript-eslint/naming-convention': 'off',
