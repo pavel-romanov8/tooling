@@ -176,6 +176,7 @@ export default tseslint.config(
     },
     rules: {
       ...customJsDocRules,
+      'jsdoc/no-types': 'off',
     },
   },
   {
@@ -192,6 +193,7 @@ export default tseslint.config(
     },
     rules: {
       '@typescript-eslint/no-require-imports': 'off', // Allow require if using .cjs
+      'jsdoc/no-types': 'off',
     },
   },
   {
